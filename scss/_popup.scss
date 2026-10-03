@@ -1,0 +1,37 @@
+// Popup dang ky. Dung Fancybox v3 (ban jQuery co san trong lib/), phan giao
+// dien ben trong dung lai nguyen khoi .reg cua trang dang ky.
+.popup-reg {
+    display: none; // an cho toi khi Fancybox nhan lay
+    width: 100%;
+    max-width: 1140px;
+    padding: 0;
+
+    .reg { box-shadow: none; }
+}
+
+// Fancybox v3 mac dinh cho noi dung nen trang va padding 44px,
+// bo di de popup om sat khoi dang ky.
+.fancybox-content {
+    padding: 0;
+    background: transparent;
+}
+
+.fancybox-bg {
+    background-color: #000628;
+}
+.fancybox-is-open .fancybox-bg {
+    opacity: 0.88;
+}
+
+.fancybox-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+}
+
+// Nut dong nam de len goc popup thay vi tach roi phia tren
+.fancybox-slide--html .fancybox-close-small {
+    top: 6px;
+    right: 6px;
+    color: #fff;
+    opacity: 0.9;
+}

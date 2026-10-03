@@ -1,0 +1,139 @@
+// Header trong suot, nam de len anh hero / dai song trang tri.
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 60;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        padding: 18px 0;
+    }
+
+    &__logo img {
+        width: 118px;
+        height: auto;
+    }
+
+    // Header desktop nam de len anh -> dung logo trang.
+    // Tren may nho header co nen sang -> doi sang logo ban mau (_responsive).
+    &__logo-dark { display: none; }
+
+    // Khi cuon xuong, header dinh lai va co nen de chu khong lan vao anh
+    &.is-stuck {
+        position: fixed;
+        background-color: rgba(1, 10, 74, 0.92);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+
+        .header__inner { padding: 10px 0; }
+        .header__logo img { width: 92px; }
+    }
+}
+
+// --- menu desktop ----------------------------------------------------------
+.nav {
+    display: flex;
+    align-items: center;
+
+    &__item {
+        position: relative;
+        padding: 0 22px;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        color: #fff;
+        white-space: nowrap;
+        transition: color 0.2s ease;
+
+        // gach doc ngan cach giua cac muc, dung dau hang thi bo
+        &:not(:last-child):after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 14px;
+            background-color: rgba(255, 255, 255, 0.45);
+        }
+
+        &:hover { color: var(--c-orange-400); }
+
+        &.is-active {
+            color: var(--c-orange-400);
+        }
+    }
+}
+
+// --- nut hamburger (chi hien tren may nho) ---------------------------------
+.nav-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        border-radius: 2px;
+        background-color: #fff;
+        transition: transform 0.25s ease, opacity 0.2s ease;
+    }
+
+    &.is-open {
+        span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        span:nth-child(2) { opacity: 0; }
+        span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    }
+}
+
+// --- menu tren may nho -----------------------------------------------------
+.nav-mobile {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(320px, 84vw);
+    padding: 90px 28px 40px;
+    background-color: var(--c-navy-900);
+    box-shadow: -14px 0 40px rgba(0, 0, 0, 0.45);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 55;
+    overflow-y: auto;
+
+    &.is-open { transform: translateX(0); }
+
+    &__item {
+        display: block;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #fff;
+
+        &.is-active { color: var(--c-orange-400); }
+    }
+}
+
+.nav-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 50;
+
+    &.is-open { opacity: 1; visibility: visible; }
+}

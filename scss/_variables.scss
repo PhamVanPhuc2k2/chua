@@ -1,0 +1,32 @@
+// Bang mau lay truc tiep tu pixel cua ban thiet ke Figma,
+// khong uoc luong bang mat.
+:root {
+    // Nen
+    --c-navy-900: #000a4a; // sau nhat, chan trang
+    --c-navy-800: #010c73; // nen card
+    --c-navy-700: #020f7e;
+    --c-blue-700: #0046b1;
+    --c-blue-600: #005fd7;
+    --c-blue-500: #1565d8;
+
+    // Nhan
+    --c-green: #88f20c; // icon, so lieu, chu de toa dam
+    --c-green-600: #77d519;
+    --c-orange: #f88f22; // nut CTA (dau gradient)
+    --c-orange-400: #faae2d; // nut CTA (cuoi gradient), header bang tai tro
+    --c-cream: #ffe3b3; // dai nhom trong bang tai tro
+    --c-gold: #ddaf6b; // vien card, vien bang
+
+    // Chu
+    --c-text: #ffffff;
+    --c-text-soft: #d7e3ff;
+
+    --grad-cta: linear-gradient(90deg, var(--c-orange) 0%, var(--c-orange-400) 100%);
+    --grad-card: linear-gradient(160deg, #041a8c 0%, #010a5e 100%);
+
+    // Tieu de in hoa: Barlow Semi Condensed. Do tu ban thiet ke, ti le
+    // rong/cao cua chu la ~8.4 - ban Condensed hep hon han (7.4) nen sai.
+    // Than bai: Be Vietnam Pro. Ca hai deu co bo tieng Viet day du.
+    --font-heading: "Barlow Semi Condensed", "Arial Narrow", sans-serif;
+    --font-body: "Be Vietnam Pro", Arial, sans-serif;
+}

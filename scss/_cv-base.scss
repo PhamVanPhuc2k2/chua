@@ -1,0 +1,326 @@
+@use "./cv-tokens" as *;
+@use "./mixins" as *;
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+    font-family: $font-body;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: $ink;
+    background-color: $paper;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+
+    &.no-scroll {
+        overflow: hidden;
+    }
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+img {
+    display: block;
+    max-width: 100%;
+}
+svg {
+    display: block;
+    flex-shrink: 0;
+}
+b,
+strong {
+    font-weight: 600;
+}
+button,
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+button {
+    cursor: pointer;
+    background: none;
+    border: 0;
+}
+:focus-visible {
+    outline: 2px solid rgba($vermilion, 0.6);
+    outline-offset: 2px;
+}
+
+// ---------------------------------------------------------------------------
+// Khung trang
+// ---------------------------------------------------------------------------
+.container {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    @include minw($sm) {
+        padding: 0 1.25rem;
+    }
+}
+.page {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 2.5rem 1rem 6rem;
+
+    @include minw($sm) {
+        padding: 3.5rem 1.25rem 6rem;
+    }
+}
+.stack-16 > * + * {
+    margin-top: 4rem;
+}
+.stack-14 > * + * {
+    margin-top: 3.5rem;
+}
+
+.skip-link {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $paper-soft;
+    background: $lacquer;
+    border-radius: 0 0 10px 0;
+    box-shadow: $shadow-soft;
+    transform: translateY(-130%);
+    transition: transform 0.18s;
+
+    &:focus {
+        transform: translateY(0);
+    }
+}
+
+// Hoa van phap luan mo phia sau dau trang
+.bg-wheel {
+    position: fixed;
+    top: -10rem;
+    left: 50%;
+    z-index: -1;
+    width: 760px;
+    color: rgba($gold, 0.07);
+    pointer-events: none;
+    transform: translateX(-50%);
+}
+
+// ---------------------------------------------------------------------------
+// Chat lieu trang tri
+// ---------------------------------------------------------------------------
+.font-display {
+    font-family: $font-display;
+}
+.eyebrow {
+    font-family: $font-body;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: $lacquer;
+}
+.ink-gold {
+    color: transparent;
+    background: linear-gradient(180deg, #d8b86e, $gold 55%, #8a6630);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.rule-gold {
+    display: block;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba($gold, 0.55) 18%, rgba($gold, 0.55) 82%, transparent);
+}
+.rule-cinnabar {
+    display: block;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $vermilion 30%, $gold 50%, $vermilion 70%, transparent);
+}
+.sumi-hero {
+    background:
+        radial-gradient(120% 90% at 50% -20%, rgba($vermilion, 0.28), transparent 55%),
+        radial-gradient(80% 60% at 85% 10%, rgba($gold, 0.18), transparent 60%),
+        linear-gradient(180deg, $sumi 0%, $sumi-soft 100%);
+}
+// Hat nhieu nhu giay do: SVG fractal noise phu len
+.sumi-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.5;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+.paper-card {
+    background: linear-gradient(180deg, rgba(#fff, 0.5), rgba(#fff, 0)), $paper-soft;
+    border: 1px solid rgba($gold, 0.28);
+    box-shadow: $shadow-soft;
+}
+.frame-gold {
+    box-shadow:
+        inset 0 0 0 1px rgba($gold, 0.45),
+        inset 0 0 0 5px $paper-soft,
+        inset 0 0 0 6px rgba($gold, 0.3);
+}
+.han-plate {
+    color: $vermilion;
+    border: 1.5px solid $vermilion;
+    background: linear-gradient(180deg, rgba($vermilion, 0.06), transparent);
+}
+.vertical-han {
+    font-family: $font-han;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    letter-spacing: 0.18em;
+}
+
+// Dai ke vang co bong sen o giua
+.ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: $gold;
+
+    .rule-gold {
+        width: 4rem;
+
+        @include minw($sm) {
+            width: 7rem;
+        }
+    }
+    &--sm {
+        gap: 0.75rem;
+        padding-top: 0.5rem;
+
+        .rule-gold {
+            width: 5rem;
+        }
+    }
+}
+
+// Nhan "Di tich" do son
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.62rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: $paper-soft;
+    background: $vermilion;
+    border-radius: 999px;
+    box-shadow: 0 1px 3px rgba(#000, 0.2), 0 0 0 1px rgba($gold, 0.4);
+
+    &--lg {
+        padding: 0.25rem 0.625rem;
+        font-size: 0.66rem;
+    }
+}
+
+// Tieu de muc: eyebrow + h2 (+ duong ke keo dai)
+.sec-head {
+    margin-bottom: 1.25rem;
+
+    &__title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 0.375rem;
+        font-family: $font-display;
+        font-size: 1.875rem;
+        font-weight: 600;
+        line-height: 1.2;
+        color: $ink;
+
+        .rule-gold {
+            display: none;
+            flex: 1;
+
+            @include minw($sm) {
+                display: block;
+            }
+        }
+    }
+    &--row {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    &__link {
+        flex-shrink: 0;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: $vermilion;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// Thong bao nho goc duoi
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 1.5rem;
+    z-index: 80;
+    max-width: calc(100% - 2rem);
+    padding: 0.7rem 1.1rem;
+    font-size: 0.85rem;
+    color: $paper-soft;
+    background: $sumi-soft;
+    border: 1px solid rgba($gold, 0.35);
+    border-radius: 999px;
+    box-shadow: $shadow-lift;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 12px);
+    transition: opacity 0.25s, transform 0.25s;
+
+    &.is-show {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+.rise {
+    animation: rise 0.9s $ease both;
+}
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

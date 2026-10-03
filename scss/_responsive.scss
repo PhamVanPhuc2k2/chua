@@ -1,0 +1,461 @@
+@use "./mixins" as *;
+
+// Theo dung he breakpoint cua la-boi-net: 1280 / 1140 / 992 / 767 / 500.
+
+@include maxw(1280px) {
+    .w-1280 { padding: 0 24px; }
+
+    .hero {
+        &__title { font-size: 60px; }
+        &__subtitle { font-size: 38px; }
+        &__topic { font-size: 34px; }
+        &__eyebrow { font-size: 34px; }
+    }
+    .purpose__trophy { width: 340px; }
+    .section-title { font-size: 36px; }
+}
+
+@include maxw(1140px) {
+    // Doi menu ngang sang nut hamburger
+    .nav { display: none; }
+    .nav-toggle { display: flex; }
+
+    .hero {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+
+        &__slide {
+            min-height: 620px;
+            padding: 130px 0 90px;
+        }
+        &__content {
+            max-width: none;
+            margin-left: 0;
+            padding-right: 0;
+        }
+        &__title { font-size: 52px; }
+        &__subtitle { font-size: 32px; }
+        &__topic { font-size: 30px; }
+        &__eyebrow { font-size: 30px; }
+        &__detail-wrap { bottom: 18px; padding-right: 24px; }
+        &__detail { font-size: 22px; }
+        &__meta li { font-size: 17px; }
+    }
+
+    .purpose {
+        &__grid { max-width: none; }
+        // Cup chuyen sang nen mo phia sau, nhuong cho cho noi dung.
+        // Giu right: 0 - tho ra ngoai le se sinh thanh cuon ngang.
+        &__trophy {
+            right: 0;
+            bottom: 0;
+            width: 300px;
+            opacity: 0.35;
+        }
+    }
+
+    .about__roles { gap: 28px; }
+
+    .why__grid { gap: 48px 28px; }
+
+    .agenda { padding-top: 200px; }
+    .sponsor { padding-top: 170px; }
+    .register-page { padding-top: 200px; }
+
+    .reg {
+        grid-template-columns: 1fr;
+
+        &__intro { padding: 44px 30px; }
+        &__headline { font-size: 36px; }
+        &__form { max-width: none; }
+
+        // Khung hep lai thi anh cup bi phong to nam ngay sau cac o nhap.
+        // Ha xuong goc duoi phai va thu nho de no chi con la trang tri.
+        &__panel {
+            padding: 44px 30px;
+            background-size: auto 46%;
+            background-position: right bottom;
+        }
+    }
+}
+
+@include maxw(992px) {
+    .section-title {
+        font-size: 30px;
+        gap: 16px;
+    }
+
+    .about {
+        padding-top: 70px;
+
+        &__intro {
+            flex-direction: column;
+            gap: 24px;
+        }
+        &__seal {
+            padding-right: 0;
+            padding-bottom: 20px;
+            border-right: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+        }
+        &__roles { grid-template-columns: 1fr; gap: 22px; }
+    }
+
+    .purpose__grid,
+    .program__grid,
+    .audience__grid,
+    .why__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact {
+        &__head {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        &__title { font-size: 30px; }
+        &__row {
+            flex-direction: column;
+            gap: 4px;
+            font-size: 16px;
+            dt { flex: none; color: var(--c-cream); }
+        }
+    }
+
+    .footer-nav { padding-top: 40px; }
+
+    .awards__item {
+        // Bo hieu ung thut le hai ben, tren man hep can het chieu ngang
+        max-width: 100% !important;
+        font-size: 16px;
+        padding: 14px 22px;
+    }
+
+    .agenda {
+        padding-top: 160px;
+        &__topic-name { font-size: 34px; }
+        &__topic-label { font-size: 22px; }
+    }
+}
+
+@include maxw(767px) {
+    // Ban thiet ke mobile (MOBILE1.png, khung 440px) khac ban desktop kha
+    // nhieu chu khong chi la xep doc lai, nen phan nay viet lai theo no.
+
+    .w-1280 { padding: 0 18px; }
+
+    // --- header: thanh sang, logo ban mau, nam tren dong chu khong de len
+    //     anh hero -------------------------------------------------------
+    .header {
+        position: sticky;
+        top: 0;
+        background-color: #ececec;
+
+        &__inner { padding: 12px 0; }
+        &__logo {
+            img { width: 86px; }
+            .header__logo-light { display: none; }
+            .header__logo-dark { display: block; }
+        }
+
+        &.is-stuck {
+            position: sticky;
+            background-color: #ececec;
+            backdrop-filter: none;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+
+            .header__inner { padding: 12px 0; }
+            .header__logo img { width: 86px; }
+        }
+    }
+    .nav-toggle span { background-color: #1226c8; }
+
+    // --- hero: banner theo ti le 440x337 cua ban thiet ke ----------------
+    // Dung min-height chu khong phai aspect-ratio co dinh: slide 1 nhieu
+    // chu hon slide ma ban thiet ke ve, de cung ti le thi cham tron phan
+    // trang se de len dong cuoi. Cho banner cao them khi can.
+    .hero {
+        height: auto;
+        min-height: calc(100vw * 337 / 440);
+
+        &__slide {
+            min-height: calc(100vw * 337 / 440);
+            padding: 3vw 0 13vw;
+            background-position: center;
+
+            // Slide 1 co nhieu dong chu hon slide trong ban thiet ke, phan
+            // duoi roi vao vung vet sang vang. Phu mot lop toi rat nhe o
+            // nua phai de chu van doc duoc.
+            &:before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                z-index: 1;
+                background-image: linear-gradient(
+                    100deg,
+                    rgba(0, 10, 60, 0) 24%,
+                    rgba(0, 10, 60, 0.3) 52%,
+                    rgba(0, 10, 60, 0.46) 100%
+                );
+            }
+        }
+        &__inner { z-index: 2; }
+
+        // Co chu tinh theo be ngang man hinh de giu dung ti le ban thiet ke
+        &__content {
+            margin-left: 30%;
+            padding-right: 4px;
+        }
+        &__script { width: 31vw; margin-bottom: -1vw; }
+        &__eyebrow { margin-bottom: 2px; font-size: 4.2vw; }
+        &__title { font-size: 5.9vw; line-height: 1.22; }
+        &__subtitle { margin-top: 1vw; font-size: 3.6vw; }
+        &__topic-label { margin-top: 2.4vw; font-size: 3.4vw; }
+        &__topic { font-size: 4.4vw; }
+        &__meta {
+            gap: 1.2vw 4vw;
+            margin-top: 2.4vw;
+
+            li { font-size: 3.1vw; gap: 1.6vw; }
+            .icon-36 { width: 4.8vw; height: 4.8vw; }
+        }
+        &__detail-wrap { bottom: 7vw; padding-right: 18px; }
+        &__detail {
+            padding-bottom: 4px;
+            border-bottom-width: 1px;
+            font-size: 3.6vw;
+            gap: 6px;
+        }
+
+        .swiper-pagination {
+            bottom: 4vw;
+            .swiper-pagination-bullet { width: 7px; height: 7px; }
+        }
+
+        .mt-30 { margin-top: 2.4vw; }
+        .btn-cta {
+            width: auto;
+            min-width: 0;
+            padding: 1.8vw 5vw;
+            font-size: 3.4vw;
+        }
+    }
+
+    // --- tieu de muc: can giua, bo duong ke keo dai ----------------------
+    .section-title {
+        justify-content: center;
+        font-size: 25px;
+        text-align: center;
+
+        &:after { display: none; }
+    }
+
+    // --- ve hiep hoi: con dau nam canh tieu de, doan van can giua --------
+    .about {
+        padding-top: 42px;
+
+        &__block {
+            grid-template-areas:
+                "seal title"
+                "text text";
+            column-gap: 14px;
+            margin-bottom: 44px;
+        }
+        &__title {
+            margin-bottom: 0;
+            justify-content: flex-start;
+            text-align: left;
+            font-size: 22px;
+        }
+        &__seal {
+            width: 64px;
+            padding-right: 0;
+            padding-bottom: 0;
+            border-right: 0;
+            border-bottom: 0; // huy duong ke ke thua tu breakpoint 992px
+        }
+        &__text {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.35);
+            font-size: 14px;
+            text-align: center;
+        }
+        &__roles { grid-template-columns: 1fr; gap: 22px; }
+        &__role { font-size: 14px; }
+    }
+
+    // --- muc dich: hai cot, cai cup nam o o trong ben phai hang dau ------
+    .purpose {
+        padding-top: 70px;
+
+        &__grid {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-areas:
+                "c1 ."
+                "c2 c3";
+            gap: 18px;
+        }
+        &__card {
+            &:nth-child(1) { grid-area: c1; }
+            &:nth-child(2) { grid-area: c2; }
+            &:nth-child(3) { grid-area: c3; }
+        }
+        &__card { padding: 22px 14px 20px; }
+        &__name { font-size: 12px; }
+        &__desc { font-size: 11px; line-height: 1.55; }
+
+        // Cup nam vua trong o trong ben phai hang dau. Giu right: 0,
+        // tho ra ngoai le se sinh thanh cuon ngang.
+        &__trophy {
+            display: block;
+            top: 78px;
+            right: 0;
+            width: 48%;
+            opacity: 1;
+        }
+    }
+
+    .quote {
+        &__inner { gap: 10px; }
+        &__mark { font-size: 40px; }
+        &__text { font-size: 16px; }
+    }
+
+    // --- thong tin chuong trinh: truot ngang, thay o luoi 3 cot ----------
+    .program {
+        &__grid {
+            display: flex;
+            grid-template-columns: none;
+            gap: 16px;
+            margin-top: 36px;
+            // The cuoi tho ra ngoai le phai de nguoi dung thay con cuon duoc
+            margin-right: -18px;
+            padding-right: 18px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        &__card {
+            flex: 0 0 46%;
+            min-height: 0;
+            padding: 22px 14px;
+            scroll-snap-align: start;
+        }
+        &__label { font-size: 15px; }
+        &__value {
+            font-size: 14px;
+            &.is-big { font-size: 30px; }
+        }
+    }
+
+    // --- doi tuong tham du: hai cot -------------------------------------
+    .audience {
+        &__grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+        &__item {
+            gap: 10px;
+            padding: 12px 12px;
+            font-size: 11.5px;
+        }
+        .icon-36 { width: 26px; height: 26px; }
+    }
+
+    .awards {
+        &__script { width: 220px; }
+        &__item {
+            max-width: 100% !important;
+            font-size: 15px;
+            padding: 13px 18px;
+        }
+    }
+
+    // Ban thiet ke de nut rong khoang 2/3 man hinh, khong keo het be ngang
+    .btn-cta {
+        min-width: 0;
+        padding: 14px 30px;
+        font-size: 16px;
+    }
+
+    // Dai song chan trang: neu de co theo be ngang thi tren may nho no mong
+    // di con mot vet. Co dinh chieu cao va cat bot hai ben.
+    .decor-wave.is-bottom img {
+        height: 92px;
+        min-width: 100%;
+        object-fit: cover;
+        object-position: center bottom;
+    }
+
+    .contact {
+        padding: 40px 0 60px;
+
+        &__head {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+        &__title { font-size: 24px; }
+
+        &__row {
+            flex-direction: row;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 13.5px;
+
+            dt {
+                flex: 0 0 44%;
+                color: var(--c-cream);
+            }
+        }
+    }
+
+    .social {
+        gap: 10px;
+
+        &__link {
+            width: 30px;
+            height: 30px;
+            img { width: 30px; height: 30px; }
+        }
+    }
+
+    .copyright__inner {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .copyright__label {
+        padding-right: 0;
+        border-right: 0;
+    }
+
+    .invite {
+        &__title { font-size: 30px; }
+    }
+
+    .reg {
+        &__headline { font-size: 28px; }
+        &__logo { width: 190px; }
+        &__note { font-size: 15px; }
+        &__submit { width: 100%; font-size: 24px; }
+    }
+
+    .agenda { padding-top: 130px; }
+    .sponsor { padding-top: 120px; }
+    .register-page { padding-top: 60px; }
+
+    .why__blob { width: 110px; height: 110px; }
+}
+
+@include maxw(500px) {
+    .header__logo img { width: 92px; }
+    .hero__title { font-size: 27px; }
+    .section-title { font-size: 21px; }
+    .agenda__topic-name { font-size: 25px; }
+    .contact__title { font-size: 24px; }
+}

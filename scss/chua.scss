@@ -1,0 +1,11 @@
+// Entry cho giao dien Chua Viet -> bien dich ra css/chua.css
+//   npx sass scss/chua.scss css/chua.css --no-source-map
+//
+// Chi dung _reset va _mixins cua bo san co; style.scss (va cac partial
+// rieng cua no) giu nguyen, khong anh huong toi file nay.
+@use "./reset";
+@use "./cv-tokens";
+@use "./cv-base";
+@use "./cv-layout";
+@use "./cv-home";
+@use "./cv-detail";

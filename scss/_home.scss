@@ -1,0 +1,411 @@
+// ---------------------------------------------------------------- hero ----
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 640px;
+    max-height: 1024px;
+    overflow: hidden;
+
+    .swiper,
+    .swiper-wrapper,
+    .swiper-slide { height: 100%; }
+
+    &__slide {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background: url("../images/bg/hero.jpg") center / cover no-repeat;
+
+        // Ban thiet ke dat khoi chu cao hon tam khung khoang 105px (tren
+        // khung 1024px). Chua khoang trong o day de day khoi chu len.
+        padding-bottom: min(210px, 20vh);
+    }
+
+    &__inner {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+    }
+
+    // Cot chu day sang phai, chua cho cai cup o nua trai anh nen.
+    // Do tu ban thiet ke: dong tieu de dai nhat keo toi x=1339 -> can
+    // khoang 700px chu, de 760px cho khop cach ngat dong.
+    &__content {
+        max-width: 760px;
+        margin-left: auto;
+        padding-right: 10px;
+    }
+
+    &__eyebrow {
+        margin-bottom: 8px;
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 1.2;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #fff;
+    }
+
+    // "Danh Hieu" la chu viet tay: font rieng khong co tren web nen giu
+    // nguyen dang anh tach tu ban thiet ke.
+    &__script {
+        display: block;
+        width: 300px;
+        max-width: 60%;
+        margin-bottom: -10px;
+        margin-left: 6px;
+    }
+
+    &__title {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        // Do tu ban thiet ke: chieu cao chu hoa 52px -> co chu 72px,
+        // khoang cach hai chan dong 86px -> dan dong 1.19.
+        font-size: 72px;
+        line-height: 1.19;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: #fff;
+        text-shadow: 0 4px 30px rgba(0, 20, 80, 0.55);
+    }
+
+    &__subtitle {
+        margin-top: 10px;
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 44px;
+        line-height: 1.16;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #cbd9ff;
+    }
+
+    &__topic-label {
+        margin-top: 26px;
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 26px;
+        line-height: 1.3;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #fff;
+    }
+
+    &__topic {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 1.22;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: var(--c-green);
+    }
+
+    &__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px 40px;
+        margin-top: 26px;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 20px;
+            font-weight: 500;
+            color: #fff;
+        }
+    }
+
+    .swiper-pagination {
+        bottom: 34px;
+
+        .swiper-pagination-bullet {
+            width: 11px;
+            height: 11px;
+            background-color: rgba(255, 255, 255, 0.55);
+            opacity: 1;
+        }
+        .swiper-pagination-bullet-active { background-color: #fff; }
+    }
+
+    // Link "XEM CHI TIET >" o goc phai duoi cua slide 2.
+    // Boc rieng mot lop phu kin be ngang slide de neo dung vao day banner
+    // chu khong phai vao day khoi chu.
+    &__detail-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 34px;
+        z-index: 2;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 46px;
+    }
+
+    &__detail {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #fff;
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 30px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #fff;
+
+        &:hover { color: var(--c-orange-400); border-color: var(--c-orange-400); }
+    }
+}
+
+// ----------------------------------------------------------- gioi thieu ----
+.about {
+    position: relative;
+    padding: 96px 0 10px; // dai song ngan cach nam ngay duoi khoi vai tro
+
+    // Desktop: tieu de chiem ca hang tren, duoi la con dau | doan van.
+    // Mobile doi thanh: con dau | tieu de, duoi la doan van (xem _responsive).
+    &__block {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+            "title title"
+            "seal  text";
+        align-items: start;
+        column-gap: 34px;
+        margin-bottom: 64px;
+    }
+
+    &__title {
+        grid-area: title;
+        margin-bottom: 40px;
+    }
+
+    &__seal {
+        grid-area: seal;
+        width: 96px;
+        padding-right: 34px;
+        border-right: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    &__text {
+        grid-area: text;
+        font-size: 17px;
+        line-height: 1.75;
+        color: #fff;
+    }
+
+    &__roles {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+
+    &__role {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        font-size: 15px;
+        line-height: 1.6;
+        color: #fff;
+    }
+}
+
+// --------------------------------------------------- muc dich - y nghia ----
+.purpose {
+    position: relative;
+    padding: 120px 0 70px;
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+        max-width: 680px; // chua cho cai cup ben phai
+    }
+
+    &__card {
+        padding: 30px 22px 28px;
+        text-align: center;
+    }
+
+    &__icon { margin: 0 auto 26px; }
+
+    &__name {
+        margin-bottom: 14px;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        color: var(--c-cream);
+    }
+
+    &__desc {
+        font-size: 13px;
+        line-height: 1.65;
+        color: #fff;
+    }
+
+    // Cup + vet sang, tach nen tu ban thiet ke
+    &__trophy {
+        position: absolute;
+        right: 0;
+        top: -120px; // nho len de mot phan cup nam trong dai song
+        width: 420px;
+        pointer-events: none;
+        z-index: 0;
+    }
+}
+
+// --------------------------------------------------------------- trich ----
+.quote {
+    position: relative;
+    padding: 30px 0 80px;
+
+    &__inner {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 22px;
+        max-width: 940px;
+        margin: 0 auto;
+    }
+
+    &__mark {
+        flex-shrink: 0;
+        font-family: Georgia, serif;
+        font-size: 64px;
+        line-height: 0.9;
+        color: var(--c-cream);
+
+        &.is-end { align-self: flex-end; }
+    }
+
+    &__text {
+        font-size: 21px;
+        line-height: 1.65;
+        text-align: center;
+        color: #fff;
+    }
+}
+
+// ------------------------------------------- thong tin chuong trinh -------
+.program {
+    position: relative;
+    padding: 60px 0 80px;
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+        margin-top: 52px;
+    }
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 16px;
+        min-height: 220px;
+        padding: 30px 24px;
+        text-align: center;
+    }
+
+    &__label {
+        font-weight: 700;
+        font-size: 20px;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        color: #fff;
+    }
+
+    &__value {
+        font-size: 17px;
+        line-height: 1.55;
+        color: #fff;
+
+        &.is-big {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 42px;
+            line-height: 1.16;
+            color: var(--c-green);
+        }
+    }
+}
+
+// --------------------------------------------------- doi tuong tham du ----
+.audience {
+    position: relative;
+    padding: 50px 0 80px;
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 48px;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 20px;
+        border-radius: 14px;
+        background-image: linear-gradient(120deg, #0b45c4 0%, #0a34a6 100%);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        font-size: 14px;
+        line-height: 1.5;
+        color: #fff;
+    }
+}
+
+// ---------------------------------------------------- hang muc xet chon ----
+.awards {
+    position: relative;
+    padding: 50px 0 90px;
+
+    &__script {
+        display: block;
+        width: 300px;
+        margin: 46px auto 30px;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    &__item {
+        width: 100%;
+        padding: 16px 30px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.85);
+        background-image: linear-gradient(90deg, #00015e 0%, #0a2fb0 50%, #00015e 100%);
+        font-size: 19px;
+        text-align: center;
+        color: #fff;
+        transition: transform 0.22s ease, box-shadow 0.22s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+        }
+
+        // Cac thanh phia trong thut vao dan, tao hinh khoi thuon nhu thiet ke
+        &:nth-child(1) { max-width: 78%; }
+        &:nth-child(2) { max-width: 88%; }
+        &:nth-child(3) { max-width: 92%; }
+        &:nth-child(4) { max-width: 84%; }
+        &:nth-child(5) { max-width: 100%; }
+    }
+
+    &__cta { margin-top: 48px; text-align: center; }
+}

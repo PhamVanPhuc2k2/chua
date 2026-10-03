@@ -1,0 +1,196 @@
+// Khoi dang ky. Dung chung cho trang dang-ky.html va popup bat len tu
+// cac nut "DANG KY XET CHON NGAY" o moi trang.
+.reg {
+    display: grid;
+    grid-template-columns: 410px 1fr;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+
+    // --- cot trai: nen sang, logo + loi moi ------------------------------
+    &__intro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 34px;
+        padding: 56px 40px;
+        background-color: #ececec;
+        text-align: center;
+    }
+
+    &__logo { width: 250px; }
+
+    &__headline {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 44px;
+        line-height: 1.2;
+        text-transform: uppercase;
+        color: #1226c8;
+    }
+
+    &__note {
+        font-size: 17px;
+        font-style: italic;
+        line-height: 1.6;
+        color: #2a3ab5;
+    }
+
+    // --- cot phai: nen toi, hinh cup dat sat le phai ---------------------
+    // Anh chi chua rieng cai cup (khong kem cac o nhap ve san trong ban
+    // thiet ke), nen no khong de len form that.
+    &__panel {
+        position: relative;
+        padding: 56px 60px;
+        // Anh cup da duoc lam mo dan o le trai ngay trong file, nen dat len
+        // nen toi la lien mach, khong con vet cat thang.
+        background: #030a3a url("../images/bg/register-panel.webp") right center / auto 100% no-repeat;
+    }
+
+    &__form {
+        position: relative;
+        z-index: 1;
+        max-width: 430px;
+    }
+}
+
+// --- cac o nhap -------------------------------------------------------------
+.field {
+    margin-bottom: 18px;
+
+    &__label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 15px;
+        color: #fff;
+    }
+
+    &__control {
+        width: 100%;
+        height: 56px;
+        padding: 0 18px;
+        border-radius: 12px;
+        background-image: linear-gradient(180deg, #d6d6d6 0%, #f3f3f3 100%);
+        font-size: 16px;
+        color: #14237a;
+
+        &::placeholder { color: #6b74a8; }
+        &:focus { box-shadow: 0 0 0 2px var(--c-orange-400); }
+    }
+
+    textarea.field__control {
+        height: 84px;
+        padding: 14px 18px;
+        resize: vertical;
+    }
+
+    // Nhan nam de len canh tren o nhap, dung nhu thiet ke
+    &.is-inset {
+        position: relative;
+
+        .field__label {
+            position: absolute;
+            top: 9px;
+            left: 18px;
+            z-index: 1;
+            margin: 0;
+            font-size: 14px;
+            color: #2b3a9c;
+        }
+        .field__control { padding-top: 26px; }
+        textarea.field__control { padding-top: 30px; }
+    }
+
+    // Thong bao loi khi kiem tra du lieu
+    &__error {
+        display: none;
+        margin-top: 6px;
+        font-size: 13px;
+        color: #ffc9c9;
+    }
+    &.has-error {
+        .field__control { box-shadow: 0 0 0 2px #ff6b6b; }
+        .field__error { display: block; }
+    }
+}
+
+// --- o chon hang muc --------------------------------------------------------
+.select {
+    position: relative;
+    display: inline-block;
+    min-width: 260px;
+
+    select {
+        width: 100%;
+        height: 46px;
+        padding: 0 54px 0 20px;
+        border-radius: 999px;
+        background-color: #fff;
+        font-size: 16px;
+        color: #1226c8;
+        appearance: none;
+        cursor: pointer;
+    }
+
+    // Mui ten do xuong + vach ngan, ve bang CSS thay vi anh
+    &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 18px;
+        width: 0;
+        height: 0;
+        margin-top: -3px;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 9px solid #1226c8;
+        pointer-events: none;
+    }
+    &:before {
+        content: "";
+        position: absolute;
+        top: 11px;
+        right: 46px;
+        width: 1px;
+        height: 24px;
+        background-color: #1226c8;
+        pointer-events: none;
+    }
+}
+
+// --- nut gui ----------------------------------------------------------------
+.reg__submit {
+    min-width: 280px;
+    margin-top: 10px;
+    padding: 16px 40px;
+    border-radius: 999px;
+    background-image: linear-gradient(90deg, #f5a623 0%, #ffd27d 100%);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #1226c8;
+    transition: transform 0.22s ease, filter 0.22s ease;
+
+    &:hover { transform: translateY(-2px); filter: brightness(1.05); }
+}
+
+// Loi bao chung + bao gui thanh cong
+.reg__message {
+    display: none;
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 15px;
+
+    &.is-ok   { display: block; background-color: rgba(136, 242, 12, 0.16); color: #ccff9a; }
+    &.is-fail { display: block; background-color: rgba(255, 107, 107, 0.16); color: #ffc9c9; }
+}
+
+// --- trang dang-ky.html -----------------------------------------------------
+.register-page {
+    position: relative;
+    padding: 330px 0 90px;
+}

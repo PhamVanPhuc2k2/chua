@@ -1,0 +1,49 @@
+// Bang mau & kich thuoc cho giao dien Chua Viet.
+// Dung bien SCSS de con pha mau trong suot (rgba($gold, .25)),
+// dong thoi xuat ra CSS variables de JS / inline style co the dung.
+
+$paper: #f3ead7;
+$paper-soft: #faf4e7;
+$paper-deep: #ece0c6;
+$ink: #231a12;
+$ink-soft: #5c4d3d;
+$ink-faint: #8c7a62;
+$lacquer: #8d2f22;
+$lacquer-deep: #6c2216;
+$vermilion: #c0352b;
+$cinnabar: #d8463a;
+$saffron: #c47c2b;
+$gold: #a87e3b;
+$gold-soft: #cda964;
+$jade: #4d6a58;
+$sumi: #1a1410;
+$sumi-soft: #2a201a;
+
+$font-display: "Cormorant", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+$font-body: "Be Vietnam Pro", system-ui, -apple-system, sans-serif;
+$font-han: "Noto Serif SC", "Noto Serif TC", "Songti SC", serif;
+
+$radius-card: 14px;
+$shadow-soft: 0 1px 2px rgba($ink, 0.05), 0 14px 34px -22px rgba($ink, 0.4);
+$shadow-lift: 0 2px 4px rgba($ink, 0.06), 0 26px 56px -28px rgba($lacquer-deep, 0.5);
+$ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+// Breakpoint theo bo cuc goc: sm 640 / md 768 / lg 1024
+$sm: 640px;
+$md: 768px;
+$lg: 1024px;
+
+:root {
+    --paper: #{$paper};
+    --paper-soft: #{$paper-soft};
+    --paper-deep: #{$paper-deep};
+    --ink: #{$ink};
+    --ink-soft: #{$ink-soft};
+    --ink-faint: #{$ink-faint};
+    --lacquer: #{$lacquer};
+    --vermilion: #{$vermilion};
+    --gold: #{$gold};
+    --gold-soft: #{$gold-soft};
+    --sumi: #{$sumi};
+    --radius-card: #{$radius-card};
+}

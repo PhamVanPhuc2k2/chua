@@ -1,0 +1,84 @@
+// Trang "Lich trinh le trao giai"
+.agenda {
+    position: relative;
+    padding: 300px 0 60px; // chua cho dai song trang tri o dau trang
+
+    &__topic {
+        margin: 60px 0 56px;
+    }
+
+    &__topic-label {
+        margin-bottom: 6px;
+        font-size: 30px;
+        line-height: 1.3;
+        color: #fff;
+    }
+
+    &__topic-name {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 46px;
+        line-height: 1.2;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: var(--c-green);
+    }
+
+    // --- bang lich trinh ---------------------------------------------------
+    &__table-wrap {
+        border-radius: 18px;
+        border: 1px solid var(--c-gold);
+        background-color: rgba(2, 14, 110, 0.55);
+        overflow: hidden;
+    }
+
+    // Tren man hinh hep, bang truot ngang trong khung rieng
+    // thay vi lam vo bo cuc ca trang.
+    &__scroll { overflow-x: auto; }
+
+    &__table {
+        width: 100%;
+        min-width: 760px;
+        border-collapse: collapse;
+
+        th,
+        td {
+            padding: 14px 18px;
+            border-bottom: 1px solid rgba(221, 175, 107, 0.45);
+            font-size: 15px;
+            line-height: 1.5;
+            text-align: center;
+            color: #fff;
+        }
+
+        th {
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            background-color: rgba(10, 46, 120, 0.9);
+        }
+
+        // Cot gio va cot dien gia hep hon cot noi dung
+        th:first-child,
+        td:first-child { width: 160px; }
+        th:last-child,
+        td:last-child { width: 300px; }
+
+        // Duong ke doc giua cac cot
+        th:not(:last-child),
+        td:not(:last-child) {
+            border-right: 1px solid rgba(221, 175, 107, 0.45);
+        }
+
+        tbody tr:last-child td { border-bottom: 0; }
+
+        tbody tr {
+            transition: background-color 0.2s ease;
+            &:hover { background-color: rgba(255, 255, 255, 0.05); }
+        }
+
+        // Dong le trao giai duoc lam noi bang mau vang
+        tr.is-highlight td { color: var(--c-orange-400); }
+    }
+}

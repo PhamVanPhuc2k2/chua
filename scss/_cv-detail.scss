@@ -1,0 +1,752 @@
+@use "./cv-tokens" as *;
+@use "./mixins" as *;
+
+// ---------------------------------------------------------------------------
+// Thanh rut gon hien khi cuon qua hero
+// ---------------------------------------------------------------------------
+.quickbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    background: rgba($paper, 0.92);
+    border-bottom: 1px solid rgba($gold, 0.2);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    transform: translateY(-100%);
+    transition: transform 0.3s;
+
+    &.is-visible {
+        transform: translateY(0);
+    }
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 0.375rem 1.25rem;
+    }
+    &__name {
+        min-width: 0;
+        overflow: hidden;
+        font-family: $font-display;
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: $ink;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    &__actions {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
+
+// Nut nho vien vang / nut son mai
+.btn-sm {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    min-height: 2.75rem;
+    padding: 0 0.875rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $lacquer;
+    border: 1px solid rgba($gold, 0.3);
+    border-radius: 999px;
+    transition: background-color 0.2s;
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+    &:hover {
+        background: rgba($gold, 0.1);
+    }
+    &--solid {
+        color: $paper-soft;
+        background: $lacquer;
+        border-color: $lacquer;
+
+        &:hover {
+            background: rgba($lacquer, 0.9);
+        }
+    }
+    .lbl {
+        display: none;
+
+        @include minw($sm) {
+            display: inline;
+        }
+    }
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.875rem;
+    color: $ink-faint;
+    transition: color 0.2s;
+
+    &:hover {
+        color: $lacquer;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Hero ho so chua
+// ---------------------------------------------------------------------------
+.temple-hero {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba($gold, 0.25);
+    border-radius: 26px;
+    box-shadow: $shadow-lift;
+
+    &__media {
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        min-height: 340px;
+        overflow: hidden;
+        background: $sumi;
+
+        @include minw($sm) {
+            min-height: 440px;
+        }
+    }
+    &__body {
+        position: relative;
+        width: 100%;
+        padding: 7rem 1.5rem 1.75rem;
+        background: linear-gradient(0deg, rgba(#1a0f0a, 0.92), rgba(#1a0f0a, 0.45) 50%, transparent);
+
+        @include minw($sm) {
+            padding: 7rem 2.5rem 2.25rem;
+        }
+    }
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+    &__title {
+        font-family: $font-display;
+        font-size: 2.25rem;
+        font-weight: 600;
+        line-height: 1.25;
+        color: $paper-soft;
+        text-shadow: 0 1px 2px rgba(#000, 0.25);
+
+        @include minw($sm) {
+            font-size: 3.75rem;
+        }
+    }
+    &__lead {
+        max-width: 42rem;
+        margin-top: 0.75rem;
+        font-size: 0.875rem;
+        line-height: 1.625;
+        color: rgba($paper-soft, 0.9);
+
+        @include minw($sm) {
+            font-size: 1rem;
+        }
+    }
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.625rem;
+        margin-top: 1.25rem;
+    }
+}
+.tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $paper-soft;
+    border-radius: 999px;
+
+    &--lacquer {
+        background: $lacquer;
+        box-shadow: 0 1px 3px rgba(#000, 0.2), 0 0 0 1px rgba($gold, 0.4);
+    }
+    &--saffron {
+        font-weight: 500;
+        background: rgba($saffron, 0.3);
+        box-shadow: 0 0 0 1px rgba($saffron, 0.4);
+    }
+}
+.btn-hero {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 999px;
+    transition: background-color 0.2s;
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+    &--light {
+        color: $lacquer;
+        background: $paper-soft;
+        box-shadow: 0 1px 3px rgba(#000, 0.2);
+
+        &:hover {
+            background: $paper;
+        }
+    }
+    &--glass {
+        color: $paper-soft;
+        background: rgba(#fff, 0.1);
+        border: 1px solid rgba($paper-soft, 0.4);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+
+        &:hover {
+            background: rgba(#fff, 0.2);
+        }
+    }
+}
+
+// 4 o thong tin nhanh duoi hero
+.facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    background: rgba($paper-soft, 0.9);
+    border-top: 1px solid rgba($gold, 0.2);
+
+    @include minw($sm) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    &__item {
+        padding: 1rem 1.25rem;
+
+        @include minw($sm) {
+            & + & {
+                border-left: 1px solid rgba($gold, 0.15);
+            }
+        }
+    }
+    &__label {
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: $ink-faint;
+
+        svg {
+            width: 14px;
+            height: 14px;
+            color: $gold;
+        }
+    }
+    &__value {
+        margin-top: 0.25rem;
+        overflow: hidden;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: $ink;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Thong tin vieng tham + ban do
+// ---------------------------------------------------------------------------
+.visit {
+    overflow: hidden;
+    border-radius: $radius-card;
+
+    &__grid {
+        display: grid;
+        gap: 1rem;
+        padding: 1.5rem;
+        font-size: 0.875rem;
+        color: $ink-soft;
+
+        @include minw($sm) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+    &__item {
+        display: flex;
+        gap: 0.625rem;
+
+        > svg {
+            width: 18px;
+            height: 18px;
+            margin-top: 0.125rem;
+            color: $gold;
+        }
+    }
+    &__label {
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: $ink-faint;
+    }
+    &__value {
+        color: $ink;
+
+        a {
+            color: $lacquer;
+            text-underline-offset: 2px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    &__map {
+        border-top: 1px solid rgba($gold, 0.2);
+
+        iframe {
+            display: block;
+            width: 100%;
+            height: 14rem;
+            border: 0;
+        }
+    }
+    &__maplink {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.375rem;
+        padding: 0.625rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: $lacquer;
+        background: rgba($gold, 0.04);
+        border-top: 1px solid rgba($gold, 0.15);
+        transition: background-color 0.2s;
+
+        svg {
+            width: 14px;
+            height: 14px;
+        }
+        &:hover {
+            background: rgba($gold, 0.1);
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Gioi thieu: chu hoa dau doan + thuat ngu co chu thich
+// ---------------------------------------------------------------------------
+.intro {
+    font-family: $font-display;
+    font-size: 1.18rem;
+    line-height: 1.85;
+    color: $ink;
+
+    &::first-letter {
+        float: left;
+        padding: 0.06em 0.12em 0 0;
+        font-family: $font-display;
+        font-size: 3.6em;
+        font-weight: 600;
+        line-height: 0.74;
+        color: $lacquer;
+    }
+    & + & {
+        margin-top: 0.9em;
+
+        &::first-letter {
+            float: none;
+            padding: 0;
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            color: inherit;
+        }
+    }
+}
+.term {
+    position: relative;
+    display: inline;
+    font: inherit;
+    color: inherit;
+    border-bottom: 1px dotted rgba($vermilion, 0.55);
+    cursor: help;
+    transition: background-color 0.2s;
+
+    &:hover,
+    &[aria-expanded="true"] {
+        background: rgba($gold, 0.15);
+    }
+}
+.term-pop {
+    position: absolute;
+    z-index: 45;
+    width: min(18rem, calc(100vw - 2rem));
+    padding: 0.75rem 0.9rem;
+    font-family: $font-body;
+    font-size: 0.8rem;
+    line-height: 1.55;
+    color: $ink-soft;
+    background: $paper-soft;
+    border: 1px solid rgba($gold, 0.35);
+    border-radius: 12px;
+    box-shadow: $shadow-lift;
+
+    &[hidden] {
+        display: none;
+    }
+    b {
+        display: block;
+        margin-bottom: 0.125rem;
+        font-family: $font-display;
+        font-size: 1rem;
+        color: $lacquer;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Diem dac sac
+// ---------------------------------------------------------------------------
+.highlights {
+    display: grid;
+    gap: 1.25rem;
+
+    @include minw($sm) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+.highlight {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    overflow: hidden;
+    background: rgba($paper-soft, 0.8);
+    border: 1px solid rgba($gold, 0.25);
+    border-radius: $radius-card;
+    box-shadow: $shadow-soft;
+
+    // goc hoa van mo
+    &__corner {
+        position: absolute;
+        top: -14px;
+        right: -14px;
+        width: 72px;
+        height: 72px;
+        color: rgba($gold, 0.14);
+        pointer-events: none;
+    }
+    &__icon {
+        width: 28px;
+        height: 28px;
+        color: $vermilion;
+    }
+    h3 {
+        font-family: $font-display;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: $lacquer;
+    }
+    p {
+        margin-top: 0.25rem;
+        font-size: 0.875rem;
+        line-height: 1.625;
+        color: $ink-soft;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Dong thoi gian
+// ---------------------------------------------------------------------------
+.timeline {
+    position: relative;
+    margin-left: 0.5rem;
+    padding-left: 2rem;
+    border-left: 2px solid rgba($gold, 0.3);
+
+    li {
+        position: relative;
+
+        & + li {
+            margin-top: 1.75rem;
+        }
+    }
+    &__dot {
+        position: absolute;
+        top: 0;
+        left: -42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 10px;
+        color: $paper-soft;
+        background: $lacquer;
+        border-radius: 999px;
+        box-shadow: 0 0 0 4px $paper, 0 1px 3px rgba(#000, 0.2);
+    }
+    &__year {
+        font-family: $font-display;
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: $lacquer;
+    }
+    &__era {
+        font-weight: 500;
+        color: $ink;
+    }
+    p {
+        margin-top: 0.25rem;
+        font-size: 0.875rem;
+        line-height: 1.625;
+        color: $ink-soft;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Thu vien anh + lightbox
+// ---------------------------------------------------------------------------
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+
+    @include minw($sm) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    figure {
+        position: relative;
+        margin: 0;
+        overflow: hidden;
+        background: $paper-soft;
+        border-radius: $radius-card;
+        cursor: zoom-in;
+
+        img {
+            width: 100%;
+            height: 11rem;
+            object-fit: cover;
+            transition: transform 0.7s $ease;
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(0deg, rgba(#000, 0.4), transparent);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        // khung vien vang nam tren anh
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            border-radius: inherit;
+            box-shadow:
+                inset 0 0 0 1px rgba($gold, 0.45),
+                inset 0 0 0 5px $paper-soft,
+                inset 0 0 0 6px rgba($gold, 0.3);
+            pointer-events: none;
+        }
+        span {
+            position: absolute;
+            right: 0.75rem;
+            bottom: 0.75rem;
+            z-index: 3;
+            padding: 0.125rem 0.5rem;
+            font-size: 10px;
+            color: rgba(#fff, 0.9);
+            background: rgba(#000, 0.45);
+            border-radius: 999px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        &:hover {
+            img {
+                transform: scale(1.05);
+            }
+            &::before,
+            span {
+                opacity: 1;
+            }
+        }
+    }
+}
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3.5rem 1rem;
+    background: rgba(#140c08, 0.92);
+
+    &[hidden] {
+        display: none;
+    }
+    img {
+        max-width: min(100%, 1100px);
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+        box-shadow: 0 30px 80px rgba(#000, 0.5);
+    }
+    figcaption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 1rem;
+        font-size: 0.8rem;
+        text-align: center;
+        color: rgba($paper, 0.75);
+    }
+    button {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.75rem;
+        height: 2.75rem;
+        color: $paper-soft;
+        background: rgba(#fff, 0.1);
+        border: 1px solid rgba($paper-soft, 0.3);
+        border-radius: 999px;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background: rgba(#fff, 0.2);
+        }
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+    &__close {
+        top: 1rem;
+        right: 1rem;
+    }
+    &__prev {
+        top: 50%;
+        left: 1rem;
+        transform: translateY(-50%);
+    }
+    &__next {
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Ghi chu cuoi trang + bao cao noi dung
+// ---------------------------------------------------------------------------
+.end-note {
+    font-size: 0.75rem;
+    line-height: 1.625;
+    text-align: center;
+    color: $ink-faint;
+}
+.report-row {
+    display: flex;
+    justify-content: center;
+    padding-top: 0.25rem;
+}
+.report-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: $ink-faint;
+    transition: color 0.2s;
+
+    svg {
+        width: 14px;
+        height: 14px;
+    }
+    &:hover {
+        color: $vermilion;
+    }
+}
+.dialog {
+    width: min(28rem, calc(100vw - 2rem));
+    padding: 0;
+    color: $ink;
+    background: $paper-soft;
+    border: 1px solid rgba($gold, 0.35);
+    border-radius: 18px;
+    box-shadow: $shadow-lift;
+
+    &::backdrop {
+        background: rgba(#140c08, 0.55);
+    }
+    form {
+        padding: 1.5rem;
+    }
+    h2 {
+        font-family: $font-display;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    p {
+        margin-top: 0.25rem;
+        font-size: 0.8rem;
+        color: $ink-faint;
+    }
+    label {
+        display: block;
+        margin-top: 1rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: $ink-soft;
+    }
+    select,
+    textarea {
+        display: block;
+        width: 100%;
+        margin-top: 0.375rem;
+        padding: 0.625rem 0.75rem;
+        font-size: 0.875rem;
+        background: #fff;
+        border: 1px solid rgba($gold, 0.35);
+        border-radius: 10px;
+        outline: none;
+
+        &:focus {
+            border-color: rgba($vermilion, 0.5);
+            box-shadow: 0 0 0 3px rgba($vermilion, 0.15);
+        }
+    }
+    textarea {
+        min-height: 6rem;
+        resize: vertical;
+    }
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        margin-top: 1.25rem;
+    }
+}

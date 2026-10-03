@@ -1,0 +1,154 @@
+// Trang "Quyen loi nha tai tro"
+.sponsor {
+    position: relative;
+    padding: 360px 0 60px; // dai song trang tri o dau trang cao 305px
+
+    &__scroll {
+        margin-top: 46px;
+        overflow-x: auto;
+    }
+
+    // --- bang goi tai tro --------------------------------------------------
+    &__table {
+        width: 100%;
+        min-width: 900px;
+        border-collapse: separate;
+        border-spacing: 4px;
+
+        th,
+        td {
+            padding: 12px 14px;
+            font-size: 14px;
+            line-height: 1.45;
+            text-align: center;
+            color: #fff;
+        }
+
+        // Hang dau: ten cac goi, nen cam
+        thead th {
+            border-radius: 6px;
+            background-image: var(--grad-cta);
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        // Cot dau moi hang: ten quyen loi, nen dam hon, canh trai
+        tbody th {
+            width: 190px;
+            border-radius: 6px;
+            background-color: #00023f;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: left;
+            color: var(--c-cream);
+        }
+
+        tbody td {
+            border-radius: 6px;
+            background-color: rgba(9, 34, 138, 0.85);
+        }
+
+        // Dai ngan cach nhom quyen loi, chay het chieu ngang bang
+        tr.is-group td {
+            border-radius: 6px;
+            padding: 11px 20px;
+            background-color: var(--c-cream);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.4px;
+            text-align: left;
+            text-transform: uppercase;
+            color: #06217a;
+        }
+    }
+}
+
+// --------------------------------------------------- tai sao nen tai tro ---
+.why {
+    position: relative;
+    padding: 90px 0 70px;
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 56px 40px;
+        margin-top: 70px;
+    }
+
+    &__item { position: relative; }
+
+    // Vong tron xanh dam lam nen trang tri phia sau moi the
+    &__blob {
+        position: absolute;
+        top: -34px;
+        left: -18px;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-image: linear-gradient(150deg, #2a2fd6 0%, #0b1183 100%);
+        z-index: 0;
+    }
+
+    &__card {
+        position: relative;
+        z-index: 1;
+        min-height: 280px;
+        padding: 26px 24px 28px;
+        border-radius: 18px;
+        background-image: linear-gradient(170deg, #ffffff 0%, #dfe4ff 100%);
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+    }
+
+    &__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+    }
+
+    // Icon trong the nen sang nen doi sang mau xanh dam
+    &__icon {
+        width: 46px;
+        height: 46px;
+        object-fit: contain;
+        filter: brightness(0) saturate(100%) invert(10%) sepia(78%)
+            saturate(3800%) hue-rotate(232deg) brightness(92%) contrast(102%);
+    }
+
+    &__arrow {
+        font-size: 20px;
+        letter-spacing: -2px;
+        color: var(--c-orange-400);
+    }
+
+    &__name {
+        margin-bottom: 14px;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 1.35;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+        color: #0a1f9c;
+    }
+
+    &__desc {
+        font-size: 13.5px;
+        line-height: 1.7;
+        text-align: justify;
+        color: #26306b;
+    }
+
+    // Vach ngang mau vang o duoi moi the
+    &__rule {
+        position: relative;
+        z-index: 1;
+        height: 4px;
+        margin: 18px 12px 0;
+        border-radius: 2px;
+        background-color: var(--c-orange-400);
+    }
+}
